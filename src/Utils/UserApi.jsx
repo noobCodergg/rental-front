@@ -7,8 +7,8 @@ const API = axios.create({
 
  export const getUser=(userId)=>API.get(`/getuser/${userId}`)
  export const updateRating = (userId, rating, ratingScore, totalRating) => {
-  const data = { rating, ratingScore, totalRating };  // Create an object with the necessary data
-  return API.put(`/updaterating/${userId}`, data);  // Send the data in the body of the request
+  const data = { rating, ratingScore, totalRating };  
+  return API.put(`/updaterating/${userId}`, data);  
 };
 export const fetchAllUsers=()=>API.get('/fetchallusers')
 export const updateUser=(id,updatedData)=>API.put(`/updateuser/${id}`,updatedData)
