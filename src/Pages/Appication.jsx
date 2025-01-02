@@ -23,6 +23,7 @@ function Application() {
 
     try{
         const response=await postApplication(applicationData)
+        alert("Application Submitted SuccessfullY")
     }catch(err){
         console.log("Error occured")
     }

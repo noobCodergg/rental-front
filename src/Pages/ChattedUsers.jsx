@@ -67,12 +67,12 @@ function ChattedUsers() {
   };
 
   return (
-    <div className="bg-gray-50 p-4 rounded-lg shadow-md max-w-md mx-auto">
-      <h2 className="text-2xl font-semibold text-center mb-6">Chatted Users</h2>
+    <div className="bg-gradient-to-r from-purple-100 via-pink-100 to-red-100 p-6 rounded-lg shadow-lg max-w-lg mx-auto">
+      <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Chatted Users</h2>
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         {users.length === 0 ? (
-          <p className="text-center text-gray-500">No users found.</p>
+          <p className="text-center text-gray-600 italic">No users found. Start a conversation!</p>
         ) : (
           users.map((chat) => {
             const { latestMessage, userId: otherUserId } = chat;
@@ -86,21 +86,21 @@ function ChattedUsers() {
                 key={chat.roomId}
               >
                 <div
-                  className={`flex items-center space-x-4 p-4 bg-white rounded-lg shadow hover:bg-gray-100 transition duration-200 ${messageStatus === 'unread' ? 'bg-gray-200' : ''}`}
+                  className={`flex items-center space-x-4 p-5 bg-white rounded-xl shadow-lg transition transform hover:scale-105 hover:shadow-2xl ${messageStatus === 'unread' ? 'border-2 border-blue-400' : ''}`}
                 >
                   <img
                     src={chat.picture || 'https://via.placeholder.com/50'}
                     alt={chat.name || 'User'}
-                    className="w-12 h-12 rounded-full object-cover"
+                    className="w-14 h-14 rounded-full object-cover border-2 border-gray-300"
                   />
                   <div className="flex-grow">
-                    <h3 className="text-lg font-medium">{chat.name || 'Unknown User'}</h3>
-                    <p className="text-gray-500 text-sm">
+                    <h3 className="text-xl font-semibold text-gray-700">{chat.name || 'Unknown User'}</h3>
+                    <p className="text-gray-500 text-sm truncate">
                       {latestMessage?.content || 'No message yet'}
                     </p>
                   </div>
                   {hasUnreadMessages && (
-                    <span className="text-xs text-blue-500 font-semibold py-1 px-2 rounded-full bg-blue-100">
+                    <span className="text-xs text-white font-semibold py-1 px-3 rounded-full bg-blue-500 animate-pulse">
                       New
                     </span>
                   )}

@@ -50,6 +50,7 @@ const UserProfile = () => {
   const saveChanges = async () => {
     try {
       await updateUser(userId, userData);
+      alert("Save Chnages Successfully");
     } catch (err) {
       console.log("Error occurred", err);
     }
@@ -144,8 +145,8 @@ const UserProfile = () => {
       </div>
 
       {/* User Info Form */}
-      <div className="p-6">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">Personal Info</h2>
+      <div className="p-10">
+        <h2 className="text-lg font-semibold text-gray-800 mb-8">Personal Info</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Name */}
           <div>

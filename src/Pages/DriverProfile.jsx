@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { authContext } from "../Context/AuthContext";
-import { getUser, postSuggestion, updateRating, updateUser } from "../Utils/UserApi";
+import { getUser, postSuggestion, updateIsAvailable, updateRating, updateUser } from "../Utils/UserApi";
 import { userContext } from "../Context/UserContext";
 import { useParams } from "react-router-dom";
 
@@ -50,6 +50,7 @@ const DriverProfile = () => {
   const saveChanges = async () => {
     try {
       await updateUser(userId, userData);
+      alert("Save Changes Successfully");
     } catch (err) {
       console.log("Error occurred", err);
     }
@@ -80,6 +81,14 @@ const DriverProfile = () => {
     }
   };
 
+  const handleAvailability = async (id) =>{
+    try{
+      await updateIsAvailable(id)
+      alert("Your Visibility has been updated")
+    }catch(error){
+      console.log("Error occured")
+    }
+  }
   if (!userData) {
     return <div className="text-center mt-10 text-gray-500">Loading...</div>;
   }
@@ -144,8 +153,8 @@ const DriverProfile = () => {
       </div>
 
       {/* User Info Form */}
-      <div className="p-6">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">Personal Info</h2>
+      <div className="p-10">
+        <h2 className="text-lg font-semibold text-gray-800 mb-8">Personal Info</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Name */}
           <div>
@@ -310,6 +319,13 @@ const DriverProfile = () => {
             className="px-6 py-2 bg-blue-500 text-white font-semibold rounded-md shadow-md hover:bg-blue-600"
           >
             Save Changes
+          </button>
+
+          <button
+            onClick={()=>handleAvailability(userData._id)}
+            className="px-6 py-2 bg-gray-300 text-black font-semibold rounded-md shadow-md hover:bg-gray-400"
+          >
+            Toggle Availability
           </button>
         </div>
       )}

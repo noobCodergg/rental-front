@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { io } from "socket.io-client";
 import { getChat, postChat } from "../Utils/ChatApi"; 
 import { userContext } from "../Context/UserContext";
-
+import { FiSend } from "react-icons/fi";
 
 function Chat() {
   const { id, userId } = useParams(); 
@@ -126,9 +126,9 @@ const navigate=useNavigate();
         />
         <button
           onClick={sendMessage}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+          className="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 flex items-center justify-center"
         >
-          Send
+          <FiSend className="w-6 h-6" />
         </button>
       </footer>
     </div>

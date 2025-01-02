@@ -11,7 +11,7 @@ const API = axios.create({
   export const updateIsRead=(id)=>API.put(`/updateisread/${id}`)
   export const updateRideStatus=(id,data)=>API.put(`/updateridestatus/${id}`,{data})
   export const getRequestStatus=(userId)=>API.get(`/getrequeststatus/${userId}`)
-  export const postSchedule=(driverId,userId,time,rideStatus)=>API.post('/posttime',{driverId,userId,time,rideStatus})
+  export const postSchedule=(driverId,userId,time,route,rideStatus)=>API.post('/posttime',{driverId,userId,time,route,rideStatus})
   export const getSchedule=(userId)=>API.get(`/getschedule/${userId}`)
   export const updateTimeStatus=(id)=>API.put(`/updatetimestatus/${id}`)
   export const postHistory=(driverId,userId)=>API.post('/posthistory',{driverId,userId})

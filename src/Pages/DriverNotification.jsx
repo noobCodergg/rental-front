@@ -10,6 +10,7 @@ function DriverNotification() {
   const [error, setError] = useState(null);
   const [isTrue, setIstrue] = useState(false);
   const [time, setTime] = useState('');
+  const [route,setRoute] =useState('');
   const navigate = useNavigate();
 
   const fetchDriverNotification = async () => {
@@ -52,7 +53,9 @@ function DriverNotification() {
 
   const handlePostTime = async (senderId) => {
     if (time) {
-      await postSchedule(userId, senderId, time, false);
+      
+      await postSchedule(userId, senderId, time,route, false);
+      navigate('/myschedule')
     } else {
       alert("Please select a time.");
     }
@@ -61,6 +64,10 @@ function DriverNotification() {
   const handleSetTime = (e) => {
     setTime(e.target.value);
   };
+
+  const handleChange =(e)=>{
+    setRoute(e.target.value)
+  }
 
   if (loading) {
     return <div className="text-center text-lg text-gray-500">Loading...</div>;
@@ -93,6 +100,7 @@ function DriverNotification() {
                   onChange={handleSetTime}
                   className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
+                <input type="text" onChange={handleChange} placeholder="Enter router"/>
                 <button
                   onClick={() => handlePostTime(data.sender)}
                   className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"

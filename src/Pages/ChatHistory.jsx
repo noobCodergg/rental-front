@@ -17,7 +17,7 @@ function ChatHistory() {
 
   useEffect(() => {
     fetchChatHistory();
-  }, []); 
+  }, []);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -30,11 +30,16 @@ function ChatHistory() {
             {data.map((item) => (
               <div
                 key={item._id}
-                className="bg-white border border-gray-200 rounded-lg p-4 shadow hover:shadow-md transition"
+                className={`border-b border-gray-200 pb-4 mb-4 ${!item.isRead ? "bg-red-300 p-4" : "bg-white"}`}
               >
-                <p className="text-lg font-medium text-gray-800 mb-2">Sender: {item.name}</p>
-                <p className="text-sm text-gray-500 mb-2">Room ID: {item.roomId}</p>
-                <p className="text-lg font-medium text-gray-800 mb-2">{item.content}</p>
+                <p className="text-lg font-medium text-gray-800">Sender: {item.name}</p>
+                <p className="text-sm text-gray-500">Room ID: {item.roomId}</p>
+                <p className="text-lg font-medium text-gray-800">{item.content}</p>
+                {!item.isRead && (
+                  <div className="text-md font-medium text-red-600 mb-2">
+                    Unread
+                  </div>
+                )}
                 <p className="text-xs text-gray-400">
                   Sent at: {new Date(item.time).toLocaleString()}
                 </p>
